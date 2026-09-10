@@ -42,7 +42,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
                         </div>
 
                         <div>
-                            <h1 className="font-bold tracking-tight text-slate-900">ABC School</h1>
+                            <h1 className="font-bold tracking-tight text-slate-900">ABC College</h1>
                             <p className="text-xs font-medium text-slate-400">Student Portal</p>
                         </div>
                     </div>

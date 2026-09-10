@@ -49,7 +49,7 @@ export const StudentDashboard = () => {
             />
 
             <StatCard
-              title="Class"
+              title="Section / Class"
               value="8-A"
               description="Roll Number: 24"
               icon={School}

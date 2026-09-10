@@ -12,7 +12,7 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
                     <Menu className="h-5 w-5" />
                 </button>
                 <div>
-                    <p className="hidden text-[10px] font-bold uppercase tracking-[0.18em] text-indigo-500 sm:block">ABC School portal</p>
+                    <p className="hidden text-[10px] font-bold uppercase tracking-[0.18em] text-indigo-500 sm:block">ABC College portal</p>
                     <h2 className="text-base font-bold text-slate-900 sm:text-lg">
                     Student Dashboard
                     </h2>

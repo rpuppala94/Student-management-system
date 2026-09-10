@@ -2,17 +2,85 @@
 
 ## Project Overview
 
-This is a School Management System being developed from scratch.
+This is a College Management System being developed from scratch for engineering colleges and degree colleges.
 
 The application has three main roles:
 
 - Student
-- Teacher
+- Faculty
 - Admin
 
 The system should be professional, responsive, maintainable, secure, and easy to extend.
 
 Build the application incrementally. Do not try to implement the entire system at once.
+
+## Academic Structure
+
+The academic structure should support:
+
+College
+→ Department
+→ Program
+→ Batch
+→ Year
+→ Semester
+→ Section
+→ Subject
+→ Student
+
+Programs may include B.Tech, BCA, B.Sc, B.Com, B.A, MCA, and M.Tech. Do not hard-code programs into the database.
+
+## Planned Modules
+
+### Student
+
+- Dashboard
+- Attendance
+- Subjects
+- Timetable
+- Exams
+- Results
+- Assignments
+- Documents
+- Fees
+- Notices
+- Notifications
+- Profile
+
+### Faculty
+
+- Dashboard
+- My Subjects
+- My Classes/Sections
+- Students
+- Attendance
+- Exams
+- Marks/Results
+- Assignments
+- Documents
+- Notices
+- Profile
+
+### Admin
+
+- Dashboard
+- Students
+- Faculty
+- Departments
+- Programs
+- Batches
+- Semesters
+- Sections
+- Subjects
+- Timetable
+- Exams
+- Results
+- Attendance
+- Assignments
+- Documents
+- Fees
+- Notices
+- Reports
 
 ---
 
@@ -49,7 +117,7 @@ Authentication will use JWT.
 Roles:
 
 - ADMIN
-- TEACHER
+- FACULTY
 - STUDENT
 
 ---

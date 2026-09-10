@@ -1,3 +1,3 @@
 export * from './header';
 export * from './sidebar';
-export * from './statcard';
+export * from './stat-card';

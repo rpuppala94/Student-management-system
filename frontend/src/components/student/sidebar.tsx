@@ -2,6 +2,7 @@ import {
     LayoutDashboard,
     CalendarCheck,
     ClipboardList,
+    FileCheck,
     FileText,
     Receipt,
     User,
@@ -10,6 +11,7 @@ import {
     GraduationCap,
     X,
 } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
 
 interface SidebarProps {
     isOpen: boolean;
@@ -17,13 +19,17 @@ interface SidebarProps {
 }
 
 const menuItems = [
-    { label: 'Dashboard', icon: LayoutDashboard, active: true },
-    { label: 'Attendance', icon: CalendarCheck },
-    { label: 'Exams', icon: ClipboardList },
-    { label: 'Results', icon: FileText },
-    { label: 'Documents', icon: FileText },
-    { label: 'Fees', icon: Receipt },
-    { label: 'Profile', icon: User },
+    { label: 'Dashboard', icon: LayoutDashboard, href: '/dashboard' },
+    { label: 'Attendance', icon: CalendarCheck, href: '/attendance' },
+    { label: 'Subjects', icon: ClipboardList, href: '/subjects' },
+    { label: 'Timetable', icon: ClipboardList, href: '/timetable' },
+    { label: 'Exams', icon: ClipboardList, href: '/exams' },
+    { label: 'Results', icon: FileText, href: '/results' },
+    { label: 'Assignments', icon: FileCheck, href: '/assignments' },
+    { label: 'Documents', icon: FileText, href: '/documents' },
+    { label: 'Fees', icon: Receipt, href: '/fees' },
+    { label: 'Notices', icon: Bell, href: '/notices' },
+    { label: 'Profile', icon: User, href: '/profile' },
 ];
 
 export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
@@ -57,9 +63,11 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
                         const Icon = item.icon;
 
                         return (
-                            <button
+                            <NavLink
                                 key={item.label}
-                                className={`flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold transition-colors ${item.active
+                                to={item.href}
+                                end={item.href === '/dashboard'}
+                                className={({ isActive }) => `flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold outline-none transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 ${isActive
                                     ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
                                     : 'text-slate-500 hover:bg-indigo-50 hover:text-indigo-700'
                                     }`}
@@ -67,17 +75,21 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
                             >
                                 <Icon className="h-[18px] w-[18px]" />
                                 {item.label}
-                            </button>
+                            </NavLink>
                         );
                     })}
                 </nav>
 
                 <div className="border-t border-indigo-100/80 bg-slate-50/60 p-4">
-                    <button className="flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900">
+                    <NavLink
+                        to="/notifications"
+                        className={({ isActive }) => `flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold transition-colors ${isActive ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'}`}
+                        onClick={onClose}
+                    >
                         <Bell className="h-[18px] w-[18px]" />
                         Notifications
                         <span className="ml-auto h-2 w-2 rounded-full bg-rose-400" />
-                    </button>
+                    </NavLink>
 
                     <button className="mt-1 flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-semibold text-slate-500 transition-colors hover:bg-rose-50 hover:text-rose-600">
                         <LogOut className="h-[18px] w-[18px]" />

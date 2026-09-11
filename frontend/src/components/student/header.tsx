@@ -1,10 +1,20 @@
 import { Bell, Menu } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 interface HeaderProps {
     onMenuClick: () => void;
 }
 
 export const Header = ({ onMenuClick }: HeaderProps) => {
+    const { pathname } = useLocation();
+    const title = pathname === '/dashboard'
+        ? 'Student Dashboard'
+        : pathname.startsWith('/subjects/')
+            ? 'Subject Details'
+            : pathname.split('/')[1]
+                ? pathname.split('/')[1].charAt(0).toUpperCase() + pathname.split('/')[1].slice(1)
+                : 'Student Dashboard';
+
     return (
         <header className="sticky top-0 z-20 flex h-[72px] items-center justify-between border-b border-indigo-100/70 bg-white/85 px-4 backdrop-blur-xl sm:px-7 lg:px-8">
             <div className="flex items-center gap-3">
@@ -12,10 +22,10 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
                     <Menu className="h-5 w-5" />
                 </button>
                 <div>
-                    <p className="hidden text-[10px] font-bold uppercase tracking-[0.18em] text-indigo-500 sm:block">ABC College portal</p>
                     <h2 className="text-base font-bold text-slate-900 sm:text-lg">
-                    Student Dashboard
+                        {title}
                     </h2>
+                    <p className="hidden text-xs font-medium text-slate-500 sm:block">B.Tech CSE <span className="px-1 text-slate-300">•</span> 3rd Year <span className="px-1 text-slate-300">•</span> 5th Semester <span className="px-1 text-slate-300">•</span> Section A</p>
                 </div>
             </div>
 

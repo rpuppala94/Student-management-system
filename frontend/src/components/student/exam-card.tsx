@@ -1,0 +1,11 @@
+import { BookOpen, CalendarDays, Clock3, MapPin } from 'lucide-react';
+import { formatExamDate, formatExamTime, getDaysRemaining, getExamDuration, getExamStatus, type Exam } from '../../data/student-exams';
+
+interface ExamCardProps { exam: Exam; prominent?: boolean; }
+
+export const ExamCard = ({ exam, prominent = false }: ExamCardProps) => {
+    const status = getExamStatus(exam);
+    const statusStyles = { Upcoming: 'bg-indigo-50 text-indigo-700', Today: 'bg-amber-50 text-amber-700', Completed: 'bg-slate-100 text-slate-600' };
+
+    return <article className={`rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm shadow-slate-200/60 ${prominent ? 'border-indigo-100 bg-indigo-50/30 sm:p-6' : ''}`}><div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"><div className="min-w-0"><div className="flex items-center gap-2"><div className="rounded-lg bg-indigo-50 p-2 text-indigo-600"><BookOpen className="h-4 w-4" /></div><p className="text-xs font-bold uppercase tracking-[0.14em] text-indigo-600">{exam.subjectCode}</p></div><h3 className="mt-3 text-lg font-extrabold text-slate-900">{exam.name}</h3><p className="mt-1 text-sm font-semibold text-slate-600">{exam.subjectName}</p><p className="mt-1 text-xs font-semibold text-slate-500">{exam.examType}</p></div><span className={`w-fit rounded-full px-3 py-1.5 text-xs font-bold ${statusStyles[status]}`}>{status}</span></div><div className="mt-5 grid gap-3 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-500 sm:grid-cols-2"><span className="flex items-center gap-2"><CalendarDays className="h-4 w-4 text-indigo-500" />{formatExamDate(exam.date)}</span><span className="flex items-center gap-2"><Clock3 className="h-4 w-4 text-indigo-500" />{formatExamTime(exam.startTime)} - {formatExamTime(exam.endTime)}</span><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-indigo-500" />{exam.room}</span><span>{getExamDuration(exam)}</span></div>{status === 'Upcoming' && <p className="mt-4 text-sm font-bold text-indigo-700">{getDaysRemaining(exam)} days remaining</p>}</article>;
+};

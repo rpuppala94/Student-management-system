@@ -6,6 +6,8 @@ interface StatCardProps {
     description: string;
     icon: LucideIcon;
     accent: 'blue' | 'emerald' | 'amber' | 'rose';
+    progress?: number;
+    progressLabel?: string;
 }
 
 export const StatCard = ({
@@ -14,27 +16,33 @@ export const StatCard = ({
     description,
     icon: Icon,
     accent,
+    progress,
+    progressLabel,
 }: StatCardProps) => {
     const accents = {
         blue: {
             icon: 'bg-blue-100 text-blue-700 ring-blue-200/70',
             glow: 'bg-blue-100/70',
             border: 'border-blue-100/80',
+            progress: 'bg-blue-600',
         },
         emerald: {
             icon: 'bg-emerald-100 text-emerald-700 ring-emerald-200/70',
             glow: 'bg-emerald-100/70',
             border: 'border-emerald-100/80',
+            progress: 'bg-emerald-600',
         },
         amber: {
             icon: 'bg-amber-100 text-amber-700 ring-amber-200/70',
             glow: 'bg-amber-100/70',
             border: 'border-amber-100/80',
+            progress: 'bg-amber-500',
         },
         rose: {
             icon: 'bg-rose-100 text-rose-700 ring-rose-200/70',
             glow: 'bg-rose-100/70',
             border: 'border-rose-100/80',
+            progress: 'bg-rose-500',
         },
     };
     const styles = accents[accent];
@@ -52,6 +60,18 @@ export const StatCard = ({
             <p className="relative mt-4 text-3xl font-extrabold tracking-tight text-slate-900">{value}</p>
 
             <p className="mt-1 text-xs font-medium text-slate-400">{description}</p>
+
+            {progress !== undefined && (
+                <div className="mt-4">
+                    <div className="mb-1.5 flex items-center justify-between text-[11px] font-semibold text-slate-400">
+                        <span>{progressLabel}</span>
+                        <span>{progress}%</span>
+                    </div>
+                    <div className="h-1.5 overflow-hidden rounded-full bg-slate-100">
+                        <div className={`h-full rounded-full ${styles.progress}`} style={{ width: `${progress}%` }} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
